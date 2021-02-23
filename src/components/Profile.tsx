@@ -9,25 +9,25 @@
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
-import styles from "../styles/components/ExperienceBar.module.css";
+import styles from "../styles/components/Profile.module.css";
 //--------------------------------------------------------------------< types >
-//========================================================[ < ExperienceBar > ]
-export default function ExperienceBar() {
+//========================================================[ < Profile > ]
+export default function Profile() {
   //-------------------------------------------------------------< properties >
   //---------------------------------------------------------------------------
   //----------------------------------------------------------------< methods >
   //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
-    <header className={styles.experienceBar}>
-      <span>0 xp</span>
+    <div className={styles.profileContainer}>
+      <img src="https://github.com/oLucasRez.png" alt="Lucas Rezende" />
       <div>
-        <div style={{ width: "50%" }} />
-        <span className={styles.currentExperience} style={{ left: "50%" }}>
-          300 xp
-        </span>
+        <strong>Lucas Rezende</strong>
+        <p>
+          <img src="icons/level.svg" alt=" Level" />
+          Level 1
+        </p>
       </div>
-      <span>600 xp</span>
-    </header>
+    </div>
   );
 }

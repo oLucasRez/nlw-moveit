@@ -9,25 +9,19 @@
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
-import styles from "../styles/components/ExperienceBar.module.css";
+import styles from "../styles/components/CompletedChallenges.module.css";
 //--------------------------------------------------------------------< types >
-//========================================================[ < ExperienceBar > ]
-export default function ExperienceBar() {
+//==================================================[ < CompletedChallenges > ]
+export default function CompletedChallenges() {
   //-------------------------------------------------------------< properties >
   //---------------------------------------------------------------------------
   //----------------------------------------------------------------< methods >
   //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
-    <header className={styles.experienceBar}>
-      <span>0 xp</span>
-      <div>
-        <div style={{ width: "50%" }} />
-        <span className={styles.currentExperience} style={{ left: "50%" }}>
-          300 xp
-        </span>
-      </div>
-      <span>600 xp</span>
-    </header>
+    <div className={styles.completedChallengesContainer}>
+      <span>Desafios Completos</span>
+      <span>5</span>
+    </div>
   );
 }

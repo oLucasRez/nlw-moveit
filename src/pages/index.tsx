@@ -2,6 +2,12 @@
 //------------------------------------------------------------------< classes >
 //--------------------------------------------------------------------< pages >
 //---------------------------------------------------------------< components >
+import Head from "next/head";
+
+import ExperienceBar from "../components/ExperienceBar";
+import Profile from "../components/Profile";
+import CompletedChallenges from "../components/CompletedChallenges";
+import Countdown from "../components/Countdown";
 //------------------------------------------------------------------< helpers >
 //-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
@@ -9,25 +15,29 @@
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
-import styles from "../styles/components/ExperienceBar.module.css";
+import styles from "../styles/pages/Home.module.css";
 //--------------------------------------------------------------------< types >
-//========================================================[ < ExperienceBar > ]
-export default function ExperienceBar() {
+//=================================================================[ < Home > ]
+export default function Home() {
   //-------------------------------------------------------------< properties >
   //---------------------------------------------------------------------------
   //----------------------------------------------------------------< methods >
   //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
-    <header className={styles.experienceBar}>
-      <span>0 xp</span>
-      <div>
-        <div style={{ width: "50%" }} />
-        <span className={styles.currentExperience} style={{ left: "50%" }}>
-          300 xp
-        </span>
-      </div>
-      <span>600 xp</span>
-    </header>
+    <div className={styles.container}>
+      <Head>
+        <title>Início | move.it</title>
+      </Head>
+      <ExperienceBar />
+      <section>
+        <div>
+          <Profile />
+          <CompletedChallenges />
+          <Countdown />
+        </div>
+        <div></div>
+      </section>
+    </div>
   );
 }
