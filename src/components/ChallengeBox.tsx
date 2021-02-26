@@ -7,7 +7,7 @@
 //--------------------------------------------------------------------< hooks >
 import { useContext } from "react";
 //-----------------------------------------------------------------< contexts >
-import { ChallengesContext } from "../contexts/ChallengesContexts";
+import { ChallengesContext } from "../contexts/ChallengesContext";
 import { CountdownContext } from "../contexts/CountdownContext";
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >

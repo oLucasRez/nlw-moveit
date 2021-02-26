@@ -11,33 +11,28 @@ import { ChallengesContext } from "../contexts/ChallengesContext";
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
-import styles from "../styles/components/ExperienceBar.module.css";
+import styles from "../styles/components/LevelUpModal.module.css";
 //--------------------------------------------------------------------< types >
-//========================================================[ < ExperienceBar > ]
-export default function ExperienceBar() {
+//=========================================================[ < LevelUpModal > ]
+export default function LevelUpModal() {
   //-------------------------------------------------------------< properties >
-  const { currentExperience, experienceToNextLevel } = useContext(
-    ChallengesContext
-  );
+  const { level, closeLevelUpModal } = useContext(ChallengesContext);
   //---------------------------------------------------------------------------
-  const percentToNextLevel =
-    Math.round(currentExperience * 100) / experienceToNextLevel;
   //----------------------------------------------------------------< methods >
   //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
-    <header className={styles.experienceBar}>
-      <span>0 xp</span>
-      <div>
-        <div style={{ width: `${percentToNextLevel}%` }} />
-        <span
-          className={styles.currentExperience}
-          style={{ left: `${percentToNextLevel}%` }}
-        >
-          {currentExperience} xp
-        </span>
+    <div className={styles.overlay}>
+      <div className={styles.levelUpModalContainer}>
+        <header>{level}</header>
+
+        <strong>Parabéns</strong>
+        <p>Você alcançou um novo level!</p>
+
+        <button type="button" onClick={closeLevelUpModal}>
+          <img src="/icons/close.svg" alt="Fechar modal" />
+        </button>
       </div>
-      <span>{experienceToNextLevel} xp</span>
-    </header>
+    </div>
   );
 }

@@ -7,13 +7,13 @@
 //--------------------------------------------------------------------< hooks >
 import { useContext } from "react";
 //-----------------------------------------------------------------< contexts >
-import { ChallengesContext } from "../contexts/ChallengesContexts";
+import { ChallengesContext } from "../contexts/ChallengesContext";
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
 import styles from "../styles/components/Profile.module.css";
 //--------------------------------------------------------------------< types >
-//========================================================[ < Profile > ]
+//==============================================================[ < Profile > ]
 export default function Profile() {
   //-------------------------------------------------------------< properties >
   const { level } = useContext(ChallengesContext);

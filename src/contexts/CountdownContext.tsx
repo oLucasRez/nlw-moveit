@@ -8,7 +8,7 @@ import { ReactNode } from "react";
 //--------------------------------------------------------------------< hooks >
 //-----------------------------------------------------------------< contexts >
 import { createContext, useState, useContext, useEffect } from "react";
-import { ChallengesContext } from "./ChallengesContexts";
+import { ChallengesContext } from "./ChallengesContext";
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
