@@ -2,9 +2,6 @@
 //------------------------------------------------------------------< classes >
 //--------------------------------------------------------------------< pages >
 //---------------------------------------------------------------< components >
-import Head from "next/head";
-
-import SignInForm from "../components/SignInForm";
 //------------------------------------------------------------------< helpers >
 //-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
@@ -12,10 +9,10 @@ import SignInForm from "../components/SignInForm";
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
-import styles from "../styles/pages/SignIn.module.css";
+import styles from "../styles/components/SignInForm.module.css";
 //--------------------------------------------------------------------< types >
-//===============================================================[ < SignIn > ]
-export default function SignIn() {
+//==============================================================[ < SignInForm > ]
+export default function SignInForm() {
   //-------------------------------------------------------------< properties >
   //---------------------------------------------------------------------------
   //----------------------------------------------------------------< methods >
@@ -23,12 +20,21 @@ export default function SignIn() {
   //-----------------------------------------------------------------< return >
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Entre | move.it</title>
-      </Head>
+      <img src="/logo-full-alt.svg" alt="move.it" />
 
-      <img src="/banner-signin.svg" alt="" />
-      <SignInForm />
+      <h1>Bem-vindo</h1>
+
+      <div className={styles.gitHubContainer}>
+        <img src="/icons/github.svg" alt="GitHub" />
+        <p>Faça login com seu GitHub para começar</p>
+      </div>
+
+      <div className={styles.inputContainer}>
+        <input placeholder="Digite seu username" />
+        <button type="submit">
+          <img src="/icons/arrow-right.svg" alt="GitHub" />
+        </button>
+      </div>
     </div>
   );
 }

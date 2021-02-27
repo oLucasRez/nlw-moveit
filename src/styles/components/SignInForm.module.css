@@ -1,0 +1,85 @@
+.container {
+  right: 15vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: absolute;
+}
+
+.container > img {
+  margin-bottom: 6rem;
+}
+
+.container > h1 {
+  font-size: 2.25rem;
+  color: var(--white);
+}
+
+.gitHubContainer {
+  width: 20rem;
+  padding: 2.25rem 0;
+
+  display: flex;
+
+  font-size: 1.25rem;
+  color: var(--text-highlight);
+}
+
+.gitHubContainer img {
+  margin-right: 1.5rem;
+}
+
+.inputContainer {
+  width: 26.25rem;
+  height: 5rem;
+
+  display: flex;
+}
+
+.inputContainer > * {
+  height: 100%;
+}
+
+.inputContainer input {
+  padding-left: 1.8rem;
+
+  flex: 1;
+
+  color: var(--white);
+  background: linear-gradient(
+    to right,
+    var(--blue-dark) -50%,
+    rgba(0, 0, 0, 0) 150%
+  );
+  border: 0;
+  border-radius: 5px 0 0 5px;
+}
+
+.inputContainer ::-webkit-input-placeholder {
+  color: var(--text-highlight);
+}
+.inputContainer :-moz-placeholder {
+  color: var(--text-highlight);
+}
+.inputContainer ::-moz-placeholder {
+  color: var(--text-highlight);
+}
+.inputContainer :-ms-input-placeholder {
+  color: var(--text-highlight);
+}
+
+.inputContainer button {
+  width: 5rem;
+
+  cursor: default;
+  font-size: 0;
+  background: var(--blue-dark);
+  border: 0;
+  border-radius: 0 5px 5px 0;
+}
+
+.inputContainer button:enabled {
+  cursor: pointer;
+  background: var(--green);
+}

@@ -1,0 +1,15 @@
+.container {
+  height: 100vh;
+
+  display: flex;
+  justify-content: left;
+  align-items: center;
+
+  background: var(--blue);
+}
+
+.container > img {
+  height: 84vh;
+
+  position: absolute;
+}
