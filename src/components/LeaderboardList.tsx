@@ -2,7 +2,7 @@
 //------------------------------------------------------------------< classes >
 //--------------------------------------------------------------------< pages >
 //---------------------------------------------------------------< components >
-import MenuBar from "../components/MenuBar";
+import LeaderboardItem from "./LeaderboardItem";
 //------------------------------------------------------------------< helpers >
 //-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
@@ -10,10 +10,10 @@ import MenuBar from "../components/MenuBar";
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
-import styles from "../styles/pages/Award.module.css";
+import styles from "../styles/components/LeaderboardList.module.css";
 //--------------------------------------------------------------------< types >
-//================================================================[ < Award > ]
-export default function Award() {
+//======================================================[ < LeaderboardList > ]
+export default function LeaderboardList() {
   //-------------------------------------------------------------< properties >
   //---------------------------------------------------------------------------
   //----------------------------------------------------------------< methods >
@@ -21,7 +21,18 @@ export default function Award() {
   //-----------------------------------------------------------------< return >
   return (
     <div className={styles.container}>
-      <MenuBar />
+      <header>
+        <span>POSIÇÃO</span>
+        <span>USUÁRIO</span>
+        <span>DESAFIOS</span>
+        <span>EXPERIÊNCIA</span>
+      </header>
+      <ul>
+        <LeaderboardItem number={1} />
+        <LeaderboardItem number={2} />
+        <LeaderboardItem number={3} />
+        <LeaderboardItem number={4} />
+      </ul>
     </div>
   );
 }

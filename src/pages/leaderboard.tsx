@@ -2,66 +2,39 @@
 //------------------------------------------------------------------< classes >
 //--------------------------------------------------------------------< pages >
 //---------------------------------------------------------------< components >
+import Head from "next/head";
+
+import MenuBar from "../components/MenuBar";
+import LeaderboardList from "../components/LeaderboardList";
 //------------------------------------------------------------------< helpers >
 //-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
-import { useState } from "react";
-import { useRouter } from "next/router";
 //-----------------------------------------------------------------< contexts >
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
-import styles from "../styles/components/MenuBar.module.css";
+import styles from "../styles/pages/Leaderboard.module.css";
 //--------------------------------------------------------------------< types >
-//==============================================================[ < MenuBar > ]
-export default function MenuBar() {
+//==========================================================[ < Leaderboard > ]
+export default function Leaderboard() {
   //-------------------------------------------------------------< properties >
-  const router = useRouter();
   //---------------------------------------------------------------------------
-  const [tabSelected, setTabSelected] = useState<"home" | "award">(
-    router.pathname === "/home" ? "home" : "award"
-  );
   //----------------------------------------------------------------< methods >
-  function onHomeClick() {
-    setTabSelected("home");
-    router.push("/home");
-  }
-
-  function onAwardClick() {
-    setTabSelected("award");
-    router.push("/leaderboard");
-  }
   //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
     <div className={styles.container}>
-      <img src="/icons/logo.svg" alt="move.it" />
+      <Head>
+        <title>Leaderboard | move.it</title>
+      </Head>
 
-      <div className={styles.tabsContainer}>
-        <div
-          className={`${styles.selector} ${
-            tabSelected === "home" ? styles.homeSelected : styles.awardSelected
-          }`}
-        />
+      <MenuBar />
 
-        <div
-          className={`${styles.tab} ${
-            tabSelected === "home" && styles.tabSelected
-          }`}
-          onClick={onHomeClick}
-        >
-          <img src="/icons/home.svg" alt="home" />
-        </div>
+      <h1>Leaderboard</h1>
 
-        <div
-          className={`${styles.tab} ${
-            tabSelected === "award" && styles.tabSelected
-          }`}
-          onClick={onAwardClick}
-        >
-          <img src="/icons/award.svg" alt="award" />
-        </div>
-      </div>
+      <section>
+        <LeaderboardList />
+      </section>
     </div>
   );
 }

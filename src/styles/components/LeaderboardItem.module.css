@@ -1,0 +1,80 @@
+.container {
+  width: 100%;
+  height: 6rem;
+  margin-bottom: 0.5rem;
+
+  display: grid;
+  grid-template-columns: 4.5rem auto max-content;
+
+  background: var(--white);
+  border-radius: 5px;
+}
+
+.number {
+  width: 100%;
+  height: 100%;
+
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 500;
+  border-right: 2px solid var(--background);
+}
+
+.person {
+  padding-left: 1.5rem;
+
+  display: flex;
+  align-items: center;
+
+  border-left: 2px solid var(--background);
+}
+
+.person > img {
+  width: 4rem;
+  height: 4rem;
+
+  border-radius: 50%;
+}
+
+.person div {
+  margin-left: 1.5rem;
+}
+
+.person div strong {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--title);
+}
+
+.person div p {
+  margin-top: 0.5rem;
+
+  font-size: 1rem;
+}
+
+.person div p img {
+  margin-right: 0.5rem;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+}
+
+.info > * {
+  width: 10rem;
+
+  text-align: start;
+}
+
+.info > :first-child {
+  width: 13rem;
+}
+
+.info div strong {
+  font-weight: 500;
+  color: var(--blue);
+}

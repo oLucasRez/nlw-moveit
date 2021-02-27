@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+}
+
+.container > header {
+  width: 100%;
+  margin-bottom: 1.5rem;
+
+  display: grid;
+  grid-template-columns: 4.5rem auto 13rem 10rem;
+
+  font-size: 0.875rem;
+  opacity: 0.5;
+  font-weight: 700;
+}
+
+.container > ul {
+  list-style-type: none;
+}
