@@ -36,7 +36,7 @@ export default function ChallengeBox() {
   //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
-    <div className={styles.challengeBoxContainer}>
+    <div className={styles.container}>
       {activeChallenge ? (
         <div className={styles.challengeActive}>
           <header>Ganhe {activeChallenge.amount} xp</header>

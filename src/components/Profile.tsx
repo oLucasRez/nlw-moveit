@@ -22,7 +22,7 @@ export default function Profile() {
   //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
-    <div className={styles.profileContainer}>
+    <div className={styles.container}>
       <img src="https://github.com/oLucasRez.png" alt="Lucas Rezende" />
       <div>
         <strong>Lucas Rezende</strong>

@@ -20,6 +20,7 @@ export default function Countdown() {
   const {
     minutes,
     seconds,
+    progress,
     hasFinished,
     isActive,
     startCountdown,
@@ -32,7 +33,7 @@ export default function Countdown() {
   //-----------------------------------------------------------------< return >
   return (
     <>
-      <div className={styles.countdownContainer}>
+      <div className={styles.container}>
         <div>
           <span>{minuteLeft}</span>
           <span>{minuteRight}</span>
@@ -46,6 +47,7 @@ export default function Countdown() {
       {hasFinished ? (
         <button disabled className={styles.countdownButton}>
           Ciclo encerrado
+          <img src="/icons/check-circle.svg" alt="" />
         </button>
       ) : (
         <>
@@ -58,6 +60,12 @@ export default function Countdown() {
               onClick={resetCountdown}
             >
               Abandonar ciclo
+              <img src="/icons/close.svg" alt="" />
+              <div className={styles.totalBar} />
+              <div
+                className={styles.loadingBar}
+                style={{ width: (1 - progress) * 100 + "%" }}
+              />
             </button>
           ) : (
             <button
@@ -66,6 +74,7 @@ export default function Countdown() {
               onClick={startCountdown}
             >
               Iniciar um ciclo
+              <img src="/icons/play-arrow.svg" alt="" />
             </button>
           )}
         </>

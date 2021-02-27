@@ -2,37 +2,26 @@
 //------------------------------------------------------------------< classes >
 //--------------------------------------------------------------------< pages >
 //---------------------------------------------------------------< components >
+import MenuBar from "../components/MenuBar";
 //------------------------------------------------------------------< helpers >
 //-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
-import { useContext } from "react";
 //-----------------------------------------------------------------< contexts >
-import { ChallengesContext } from "../contexts/ChallengesContext";
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
-import styles from "../styles/components/LevelUpModal.module.css";
+import styles from "../styles/pages/Award.module.css";
 //--------------------------------------------------------------------< types >
-//=========================================================[ < LevelUpModal > ]
-export default function LevelUpModal() {
+//================================================================[ < Award > ]
+export default function Award() {
   //-------------------------------------------------------------< properties >
-  const { level, closeLevelUpModal } = useContext(ChallengesContext);
   //---------------------------------------------------------------------------
   //----------------------------------------------------------------< methods >
   //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
-    <div className={styles.overlay}>
-      <div className={styles.container}>
-        <header>{level}</header>
-
-        <strong>Parabéns</strong>
-        <p>Você alcançou um novo level!</p>
-
-        <button type="button" onClick={closeLevelUpModal}>
-          <img src="/icons/close.svg" alt="Fechar modal" />
-        </button>
-      </div>
+    <div className={styles.container}>
+      <MenuBar />
     </div>
   );
 }

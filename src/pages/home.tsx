@@ -21,6 +21,7 @@ import { CountdownProvider } from "../contexts/CountdownContext";
 import styles from "../styles/pages/Home.module.css";
 //--------------------------------------------------------------------< types >
 import { GetServerSideProps } from "next";
+import MenuBar from "../components/MenuBar";
 
 interface HomeProps {
   level: number;
@@ -48,6 +49,9 @@ export default function Home({
         <Head>
           <title>Início | move.it</title>
         </Head>
+
+        <MenuBar />
+
         <ExperienceBar />
 
         <CountdownProvider>

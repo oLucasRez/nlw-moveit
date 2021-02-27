@@ -5,33 +5,62 @@
 //------------------------------------------------------------------< helpers >
 //-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
-import { useContext } from "react";
+import { useState } from "react";
+import { useRouter } from "next/router";
 //-----------------------------------------------------------------< contexts >
-import { ChallengesContext } from "../contexts/ChallengesContext";
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
-import styles from "../styles/components/LevelUpModal.module.css";
+import styles from "../styles/components/MenuBar.module.css";
 //--------------------------------------------------------------------< types >
-//=========================================================[ < LevelUpModal > ]
-export default function LevelUpModal() {
+//==============================================================[ < MenuBar > ]
+export default function MenuBar() {
   //-------------------------------------------------------------< properties >
-  const { level, closeLevelUpModal } = useContext(ChallengesContext);
+  const router = useRouter();
   //---------------------------------------------------------------------------
+  const [tabSelected, setTabSelected] = useState<"home" | "award">(
+    router.pathname === "/home" ? "home" : "award"
+  );
   //----------------------------------------------------------------< methods >
+  function onHomeClick() {
+    setTabSelected("home");
+    router.push("/home");
+  }
+
+  function onAwardClick() {
+    setTabSelected("award");
+    router.push("/award");
+  }
   //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
-    <div className={styles.overlay}>
-      <div className={styles.container}>
-        <header>{level}</header>
+    <div className={styles.container}>
+      <img src="/icons/logo.svg" alt="move.it" />
 
-        <strong>Parabéns</strong>
-        <p>Você alcançou um novo level!</p>
+      <div className={styles.tabsContainer}>
+        <div
+          className={`${styles.selector} ${
+            tabSelected === "home" ? styles.homeSelected : styles.awardSelected
+          }`}
+        />
 
-        <button type="button" onClick={closeLevelUpModal}>
-          <img src="/icons/close.svg" alt="Fechar modal" />
-        </button>
+        <div
+          className={`${styles.tab} ${
+            tabSelected === "home" && styles.tabSelected
+          }`}
+          onClick={onHomeClick}
+        >
+          <img src="/icons/home.svg" alt="home" />
+        </div>
+
+        <div
+          className={`${styles.tab} ${
+            tabSelected === "award" && styles.tabSelected
+          }`}
+          onClick={onAwardClick}
+        >
+          <img src="/icons/award.svg" alt="award" />
+        </div>
       </div>
     </div>
   );

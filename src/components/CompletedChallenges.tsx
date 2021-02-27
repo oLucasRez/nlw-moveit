@@ -22,7 +22,7 @@ export default function CompletedChallenges() {
   //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
-    <div className={styles.completedChallengesContainer}>
+    <div className={styles.container}>
       <span>Desafios Completos</span>
       <span>{challengesCompleted}</span>
     </div>

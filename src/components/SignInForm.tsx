@@ -5,6 +5,8 @@
 //------------------------------------------------------------------< helpers >
 //-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 //-----------------------------------------------------------------< contexts >
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
@@ -14,9 +16,22 @@ import styles from "../styles/components/SignInForm.module.css";
 //==============================================================[ < SignInForm > ]
 export default function SignInForm() {
   //-------------------------------------------------------------< properties >
+  const router = useRouter();
+
+  const [username, setUsername] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   //---------------------------------------------------------------------------
   //----------------------------------------------------------------< methods >
+  useEffect(() => setIsButtonDisabled(username === ""), [username]);
   //---------------------------------------------------------------------------
+  function onUsernameInput({ target }) {
+    setUsername(target.value);
+  }
+
+  function onSubmit() {
+    // TODO: validar username
+    router.push("/home");
+  }
   //-----------------------------------------------------------------< return >
   return (
     <div className={styles.container}>
@@ -30,8 +45,8 @@ export default function SignInForm() {
       </div>
 
       <div className={styles.inputContainer}>
-        <input placeholder="Digite seu username" />
-        <button type="submit">
+        <input placeholder="Digite seu username" onChange={onUsernameInput} />
+        <button type="submit" disabled={isButtonDisabled} onClick={onSubmit}>
           <img src="/icons/arrow-right.svg" alt="GitHub" />
         </button>
       </div>

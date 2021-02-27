@@ -1,13 +1,13 @@
-.experienceBar {
+.container {
   display: flex;
   align-items: center;
 }
 
-.experienceBar span {
+.container span {
   font-size: 1rem;
 }
 
-.experienceBar > div {
+.container > div {
   height: 4px;
   margin: 0 1.5rem;
 
@@ -18,7 +18,7 @@
   background: var(--gray-line);
 }
 
-.experienceBar > div > div {
+.container > div > div {
   height: 4px;
 
   border-radius: 4px;

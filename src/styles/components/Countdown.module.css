@@ -1,4 +1,4 @@
-.countdownContainer {
+.container {
   display: flex;
   align-items: center;
   font-family: Rajdhani;
@@ -6,7 +6,7 @@
   color: var(--title);
 }
 
-.countdownContainer > div {
+.container > div {
   flex: 1;
 
   display: flex;
@@ -20,19 +20,19 @@
   text-align: center;
 }
 
-.countdownContainer > div span {
+.container > div span {
   flex: 1;
 }
 
-.countdownContainer > div span:first-child {
+.container > div span:first-child {
   border-right: 1px solid #f0f1f3;
 }
 
-.countdownContainer > div span:last-child {
+.container > div span:last-child {
   border-left: 1px solid #f0f1f3;
 }
 
-.countdownContainer > span {
+.container > span {
   margin: 0 0.5rem;
 
   font-size: 6.25rem;
@@ -57,13 +57,23 @@
   transition: background-color 0.1s;
 }
 
+.countdownButton img {
+  margin-left: 1rem;
+}
+
 .countdownButton:not(:disabled):hover {
   background: var(--blue-dark);
 }
 
 .countdownButtonActive {
+  position: relative;
+
   background: var(--white);
   color: var(--title);
+}
+
+.countdownButtonActive img {
+  margin-left: 0.5rem;
 }
 
 .countdownButtonActive:not(:disabled):hover {
@@ -71,10 +81,35 @@
   color: var(--white);
 }
 
+.countdownButtonActive:not(:disabled):hover img {
+  filter: brightness(10);
+}
+
 .countdownButton:disabled {
   cursor: not-allowed;
 
   background: var(--white);
   color: var(--text);
-  border-bottom: 4px solid var(--green);
+  border-bottom: 5px solid var(--green);
+}
+
+.totalBar,
+.loadingBar {
+  height: 5px;
+  left: 0;
+  bottom: 0;
+
+  position: absolute;
+
+  border-radius: 0 0 5px 5px;
+}
+
+.loadingBar {
+  background: var(--green);
+}
+
+.totalBar {
+  width: 100%;
+
+  background: var(--gray-line);
 }
