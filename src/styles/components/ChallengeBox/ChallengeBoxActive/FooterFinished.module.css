@@ -1,0 +1,29 @@
+.container .challengeFailedButton {
+  background: var(--red);
+}
+
+.container .challengeFailedButton:hover {
+  background: var(--red-dark);
+}
+
+.container .challengeSucceededButton {
+  background: var(--green);
+}
+
+.container .challengeSucceededButton:hover {
+  background: var(--green-dark);
+}
+
+.totalBar {
+  width: calc(100% + 4rem);
+  height: 5px;
+  margin: -1.5rem -2rem;
+  bottom: 0;
+  left: 0;
+
+  position: absolute;
+
+  background: var(--gray-line);
+  background: var(--green);
+  border-radius: 0 0 5px 5px;
+}

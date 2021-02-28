@@ -1,11 +1,13 @@
 .container {
   height: 100vh;
-  max-width: 992px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 2.5rem 2rem;
 
   display: flex;
   flex-direction: column;
+
+  padding-left: 9rem;
 }
 
 .container section {

@@ -2,70 +2,59 @@
 //------------------------------------------------------------------< classes >
 //--------------------------------------------------------------------< pages >
 //---------------------------------------------------------------< components >
+import { useMemo, useState } from "react";
 //------------------------------------------------------------------< helpers >
 //-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
-import { useContext, useEffect } from "react";
-
-import { useCountdown } from "../hooks/useCountdown";
 //-----------------------------------------------------------------< contexts >
 import { createContext } from "react";
-
-import { ChallengesContext } from "./ChallengesContext";
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
 //--------------------------------------------------------------------< types >
 import { ReactNode } from "react";
 
-interface CountdownContextData {
-  minutes: number;
-  seconds: number;
-  progress: number;
-  hasFinished: boolean;
-  isActive: boolean;
-  startCountdown: () => void;
-  resetCountdown: () => void;
+interface BreakContextData {
+  shortBreak: number;
+  longBreak: number;
+  breakPattern: number[];
+  currentBreakIndex: number;
+  nextBreak: () => void;
 }
 
-interface CountdownProviderProps {
+interface BreakProviderProps {
   children: ReactNode;
 }
 //-------------------------------------------------------------------< global >
-const maxTime = 0.1 * 60;
+const shortBreak = 0.05 * 60;
+const longBreak = 0.15 * 60;
+const breakPattern = [shortBreak, shortBreak, shortBreak, longBreak];
 
-export const CountdownContext = createContext({} as CountdownContextData);
-//====================================================[ < CountdownProvider > ]
-export function CountdownProvider({ children }: CountdownProviderProps) {
+export const BreakContext = createContext({} as BreakContextData);
+//========================================================[ < BreakProvider > ]
+export function BreakProvider({ children }: BreakProviderProps) {
   //-------------------------------------------------------------< properties >
-  const { startNewChallenge } = useContext(ChallengesContext);
-  //---------------------------------------------------------------------------
-  const {
-    time,
-    isActive,
-    hasFinished,
-    start: startCountdown,
-    reset: resetCountdown,
-  } = useCountdown(maxTime);
-  //---------------------------------------------------------------------------
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
+  const [breakIndex, setBreakIndex] = useState(0);
   //----------------------------------------------------------------< methods >
-  useEffect(() => hasFinished && startNewChallenge(), [hasFinished]);
+  const currentBreakIndex = useMemo(() => breakIndex % breakPattern.length, [
+    breakIndex,
+  ]);
+  //---------------------------------------------------------------------------
+  function nextBreak() {
+    setBreakIndex(breakIndex + 1);
+  }
   //-----------------------------------------------------------------< return >
   return (
-    <CountdownContext.Provider
+    <BreakContext.Provider
       value={{
-        minutes,
-        seconds,
-        progress: time / maxTime,
-        hasFinished,
-        isActive,
-        startCountdown,
-        resetCountdown,
+        shortBreak,
+        longBreak,
+        breakPattern,
+        currentBreakIndex,
+        nextBreak,
       }}
     >
       {children}
-    </CountdownContext.Provider>
+    </BreakContext.Provider>
   );
 }

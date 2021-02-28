@@ -2,75 +2,57 @@
 //------------------------------------------------------------------< classes >
 //--------------------------------------------------------------------< pages >
 //---------------------------------------------------------------< components >
+import ChallengeBoxActive from "./ChallengeBoxActive/ChallengeBoxActive";
+import ChallengeBoxNotActive from "./ChallengeBoxNotActive";
 //------------------------------------------------------------------< helpers >
 //-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
 import { useContext } from "react";
 //-----------------------------------------------------------------< contexts >
-import { ChallengesContext } from "../contexts/ChallengesContext";
-import { CountdownContext } from "../contexts/CountdownContext";
+import { ChallengesContext } from "../../contexts/ChallengesContext";
+import { BreakContext } from "../../contexts/BreakContext";
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
-import styles from "../styles/components/ChallengeBox.module.css";
+import styles from "../../styles/components/ChallengeBox/ChallengeBox.module.css";
 //--------------------------------------------------------------------< types >
 //-------------------------------------------------------------------< global >
 //=========================================================[ < ChallengeBox > ]
 export default function ChallengeBox() {
   //-------------------------------------------------------------< properties >
-  const { activeChallenge, resetChallenge, completeChallenge } = useContext(
-    ChallengesContext
+  const { activeChallenge } = useContext(ChallengesContext);
+  const { shortBreak, breakPattern, currentBreakIndex } = useContext(
+    BreakContext
   );
-  const { resetCountdown } = useContext(CountdownContext);
   //---------------------------------------------------------------------------
   //----------------------------------------------------------------< methods >
-  function handleChallengeSucceeded() {
-    completeChallenge();
-    resetCountdown();
-  }
+  function getBalls() {
+    const balls = [];
 
-  function handleChallengeFailed() {
-    resetChallenge();
-    resetCountdown();
+    for (let i = 0; i < breakPattern.length; i++) {
+      const isShortBreak = breakPattern[i] === shortBreak;
+      const className = isShortBreak ? styles.shortBreak : styles.longBreak;
+
+      balls.push(
+        <div
+          key={i}
+          className={`${className} ${
+            currentBreakIndex === i && styles.currentBreak
+          }`}
+        />
+      );
+    }
+
+    return balls;
   }
   //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
     <div className={styles.container}>
-      {activeChallenge ? (
-        <div className={styles.challengeActive}>
-          <header>Ganhe {activeChallenge.amount} xp</header>
-          <main>
-            <img src={`icons/${activeChallenge.type}.svg`} alt="" />
-            <strong>Novo desafio</strong>
-            <p>{activeChallenge.description}</p>
-          </main>
-          <footer>
-            <button
-              type="button"
-              className={styles.challengeFailedButton}
-              onClick={handleChallengeFailed}
-            >
-              Falhei
-            </button>
-            <button
-              type="button"
-              className={styles.challengeSucceededButton}
-              onClick={handleChallengeSucceeded}
-            >
-              Completei
-            </button>
-          </footer>
-        </div>
-      ) : (
-        <div className={styles.challengeNotActive}>
-          <strong>Finalize um ciclo para receber um desafio</strong>
-          <p>
-            <img src="icons/level-up.svg" alt="Level Up" />
-            Avance de level completando desafios.
-          </p>
-        </div>
-      )}
+      <div className={styles.breakBallsContainer}>
+        {getBalls().map((balls) => balls)}
+      </div>
+      {activeChallenge ? <ChallengeBoxActive /> : <ChallengeBoxNotActive />}
     </div>
   );
 }

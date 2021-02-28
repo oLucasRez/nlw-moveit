@@ -1,0 +1,77 @@
+.container .countdownContainer {
+  display: flex;
+  align-items: center;
+  font-family: Rajdhani;
+  font-weight: 600;
+  color: var(--title);
+}
+
+.container .countdownContainer > div {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  background: var(--background);
+  border-radius: 5px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.container .countdownContainer > div span {
+  flex: 1;
+}
+
+.container .countdownContainer > div span:first-child {
+  border-right: 1px solid var(--white);
+}
+
+.container .countdownContainer > div span:last-child {
+  border-left: 1px solid var(--white);
+}
+
+.container .countdownContainer > span {
+  margin: 0 0.5rem;
+
+  font-size: 1.25rem;
+}
+
+.container .startButton {
+  background: var(--blue);
+}
+
+.container .startButton:hover {
+  background: var(--blue-dark);
+}
+
+.container .cancelButton {
+  color: var(--text);
+  background: var(--background);
+}
+
+.container .cancelButton:hover {
+  color: var(--white);
+  background: var(--red);
+  transition: 0.1s;
+}
+
+.totalBar {
+  width: calc(100% + 4rem);
+  height: 5px;
+  margin: -1.5rem -2rem;
+  bottom: 0;
+  left: 0;
+
+  position: absolute;
+
+  background: var(--gray-line);
+  border-radius: 0 0 5px 5px;
+}
+
+.progressBar {
+  height: 5px;
+
+  background: var(--green);
+  border-radius: 0 0 5px 5px;
+}

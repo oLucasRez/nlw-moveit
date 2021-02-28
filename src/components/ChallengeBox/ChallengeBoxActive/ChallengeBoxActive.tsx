@@ -2,63 +2,46 @@
 //------------------------------------------------------------------< classes >
 //--------------------------------------------------------------------< pages >
 //---------------------------------------------------------------< components >
+import FooterFinished from "./FooterFinished";
+import FooterNotFinished from "./FooterNotFinished";
 //------------------------------------------------------------------< helpers >
 //-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
-import { useState } from "react";
-import { useRouter } from "next/router";
+import { useContext } from "react";
 //-----------------------------------------------------------------< contexts >
+import { useCountdown } from "../../../hooks/useCountdown";
+import { ChallengesContext } from "../../../contexts/ChallengesContext";
+import { BreakContext } from "../../../contexts/BreakContext";
 //--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
-import styles from "../styles/components/MenuBar.module.css";
+import styles from "../../../styles/components/ChallengeBox/ChallengeBoxActive/ChallengeBoxActive.module.css";
 //--------------------------------------------------------------------< types >
-//==============================================================[ < MenuBar > ]
-export default function MenuBar() {
+//-------------------------------------------------------------------< global >
+//===================================================[ < ChallengeBoxActive > ]
+export default function ChallengeBoxActive() {
   //-------------------------------------------------------------< properties >
-  const router = useRouter();
+  const { activeChallenge } = useContext(ChallengesContext);
+  const { breakPattern, currentBreakIndex } = useContext(BreakContext);
   //---------------------------------------------------------------------------
-  const isHomePage = router.pathname === "/home";
-  const isLeaderboardPage = router.pathname === "/leaderboard";
+  const countdown = useCountdown(breakPattern[currentBreakIndex]);
   //----------------------------------------------------------------< methods >
-  function onHomeClick() {
-    router.push("/home");
-  }
-
-  function onAwardClick() {
-    router.push("/leaderboard");
-  }
-  //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
     <div className={styles.container}>
-      <img src="/icons/logo.svg" alt="move.it" />
+      <header>Ganhe {activeChallenge.amount} xp</header>
 
-      <div className={styles.tabsContainer}>
-        <div
-          className={
-            styles.selector +
-            " " +
-            (isHomePage && styles.homeSelected) +
-            " " +
-            (isLeaderboardPage && styles.awardSelected)
-          }
-        />
+      <main>
+        <img src={`icons/${activeChallenge.type}.svg`} alt="" />
+        <strong>Novo desafio</strong>
+        <p>{activeChallenge.description}</p>
+      </main>
 
-        <div
-          className={`${styles.tab} ${isHomePage && styles.tabSelected}`}
-          onClick={onHomeClick}
-        >
-          <img src="/icons/home.svg" alt="home" />
-        </div>
-
-        <div
-          className={`${styles.tab} ${isLeaderboardPage && styles.tabSelected}`}
-          onClick={onAwardClick}
-        >
-          <img src="/icons/award.svg" alt="award" />
-        </div>
-      </div>
+      {countdown.hasFinished ? (
+        <FooterFinished />
+      ) : (
+        <FooterNotFinished countdown={countdown} />
+      )}
     </div>
   );
 }

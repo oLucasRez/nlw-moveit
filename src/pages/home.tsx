@@ -8,7 +8,7 @@ import ExperienceBar from "../components/ExperienceBar";
 import Profile from "../components/Profile";
 import CompletedChallenges from "../components/CompletedChallenges";
 import Countdown from "../components/Countdown";
-import ChallengeBox from "../components/ChallengeBox";
+import ChallengeBox from "../components/ChallengeBox/ChallengeBox";
 //------------------------------------------------------------------< helpers >
 //-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
@@ -22,6 +22,7 @@ import styles from "../styles/pages/Home.module.css";
 //--------------------------------------------------------------------< types >
 import { GetServerSideProps } from "next";
 import MenuBar from "../components/MenuBar";
+import { BreakProvider } from "../contexts/BreakContext";
 
 interface HomeProps {
   level: number;
@@ -62,7 +63,9 @@ export default function Home({
               <Countdown />
             </div>
             <div>
-              <ChallengeBox />
+              <BreakProvider>
+                <ChallengeBox />
+              </BreakProvider>
             </div>
           </section>
         </CountdownProvider>
