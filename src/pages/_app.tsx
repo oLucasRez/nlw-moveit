@@ -36,11 +36,16 @@ export default function MyApp({
 }
 
 MyApp.getInitialProps = async (appContext: AppContext) => {
-  const {
-    level,
-    currentExperience,
-    challengesCompleted,
-  } = appContext.ctx.req?.cookies;
+  const { cookies } = {
+    cookies: {
+      level: undefined,
+      currentExperience: undefined,
+      challengesCompleted: undefined,
+    },
+    ...appContext.ctx.req,
+  };
+
+  const { level, currentExperience, challengesCompleted } = cookies;
 
   const appProps = await App.getInitialProps(appContext);
 
