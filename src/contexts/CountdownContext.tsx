@@ -21,7 +21,7 @@ interface CountdownProviderProps {
   children: ReactNode;
 }
 //-------------------------------------------------------------------< global >
-const maxTime = 0.1 * 60;
+const maxTime = 25 * 60;
 
 export const CountdownContext = createContext({} as CountdownContextData);
 //====================================================[ < CountdownProvider > ]

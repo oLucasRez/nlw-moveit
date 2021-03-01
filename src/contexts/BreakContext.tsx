@@ -17,8 +17,8 @@ interface BreakProviderProps {
   children: ReactNode;
 }
 //-------------------------------------------------------------------< global >
-const shortBreak = 0.05 * 60;
-const longBreak = 0.15 * 60;
+const shortBreak = 5 * 60;
+const longBreak = 15 * 60;
 const breakPattern = [shortBreak, shortBreak, shortBreak, longBreak];
 
 export const BreakContext = createContext({} as BreakContextData);
