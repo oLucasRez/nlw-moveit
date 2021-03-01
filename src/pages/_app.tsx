@@ -3,6 +3,7 @@ import App from "next/app";
 //-----------------------------------------------------------------< contexts >
 import { ChallengesProvider } from "../contexts/ChallengesContext";
 import { CountdownProvider } from "../contexts/CountdownContext";
+import { UserProvider } from "../contexts/UserContext";
 //-------------------------------------------------------------------< styles >
 import "../styles/global.css";
 //--------------------------------------------------------------------< types >
@@ -29,7 +30,9 @@ export default function MyApp({
       challengesCompleted={challengesCompleted}
     >
       <CountdownProvider>
-        <Component {...pageProps} />
+        <UserProvider>
+          <Component {...pageProps} />
+        </UserProvider>
       </CountdownProvider>
     </ChallengesProvider>
   );

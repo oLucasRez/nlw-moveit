@@ -1,14 +1,17 @@
 //--------------------------------------------------------------------< hooks >
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+//-----------------------------------------------------------------< contexts >
+import { UserContext } from "../contexts/UserContext";
 //-------------------------------------------------------------------< styles >
 import styles from "../styles/components/SignInForm.module.css";
-//==============================================================[ < SignInForm > ]
+//===========================================================[ < SignInForm > ]
 export default function SignInForm() {
   //-------------------------------------------------------------< properties >
   const router = useRouter();
   //---------------------------------------------------------------------------
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useContext(UserContext).usernameState;
+  //---------------------------------------------------------------------------
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   //----------------------------------------------------------------< methods >
   useEffect(() => setIsButtonDisabled(username === ""), [username]);
