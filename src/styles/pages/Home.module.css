@@ -3,11 +3,10 @@
   max-width: 1080px;
   margin: 0 auto;
   padding: 2.5rem 2rem;
+  padding-left: 9rem;
 
   display: flex;
   flex-direction: column;
-
-  padding-left: 9rem;
 }
 
 .container section {
@@ -16,4 +15,39 @@
   grid-template-columns: 1fr 1fr;
   gap: 6.25rem;
   align-content: center;
+}
+
+@media only screen and (max-width: 940px) {
+  .container {
+    max-width: 640px;
+  }
+
+  .container section {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .container {
+    max-width: none;
+    padding-left: 2rem;
+  }
+
+  .container section {
+    margin-bottom: 4.5rem;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .container section > div {
+    height: 35rem;
+
+    align-self: center;
+  }
+
+  .container section .hidden {
+    display: none;
+  }
 }

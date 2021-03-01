@@ -4,7 +4,7 @@
   left: 0;
   top: 0;
 
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,8 +16,7 @@
   top: 2rem;
   left: 0;
   right: 0;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 
   position: absolute;
 }
@@ -27,8 +26,7 @@
 
   position: relative;
   display: grid;
-  grid-template-rows: 3.5rem 3.5rem;
-  row-gap: 1rem;
+  grid-template-rows: 4rem 4rem;
 }
 
 .tab {
@@ -87,4 +85,81 @@
   bottom: 0;
 
   animation-name: award;
+}
+
+@media only screen and (max-width: 540px) {
+  .container {
+    width: 100vw;
+    height: 6rem;
+    top: auto;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .container > img {
+    height: 2.5rem;
+    left: 2rem;
+    margin: auto 0;
+
+    position: absolute;
+  }
+
+  .tabsContainer {
+    width: 12rem;
+    height: 100%;
+
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 6rem 6rem;
+  }
+
+  .tab {
+    width: 100%;
+    height: 100%;
+
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .selector {
+    width: 50%;
+    height: 5px;
+    top: auto;
+    left: auto;
+    bottom: 0;
+
+    border-radius: 5px 5px 0 0;
+  }
+
+  @keyframes home {
+    from {
+      transform: translateX(100%);
+    }
+  }
+
+  .homeSelected {
+    top: auto;
+    left: 0;
+
+    animation-name: home;
+  }
+
+  @keyframes award {
+    from {
+      transform: translateX(-100%);
+    }
+  }
+
+  .awardSelected {
+    right: 0;
+
+    animation-name: award;
+  }
 }

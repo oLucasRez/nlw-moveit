@@ -56,6 +56,7 @@
 }
 
 .person div p img {
+  width: 1rem;
   margin-right: 0.5rem;
 }
 
@@ -77,4 +78,53 @@
 .info div strong {
   font-weight: 500;
   color: var(--blue);
+}
+
+@media only screen and (max-width: 920px) {
+  .info {
+    padding-right: 2rem;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .info > * {
+    width: max-content;
+    text-align: end;
+  }
+
+  .info > :first-child {
+    width: auto;
+  }
+
+  .info > div + div {
+    margin-top: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 680px) and (min-width: 381px) {
+  .person > img {
+    display: none;
+  }
+
+  .person div {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .info {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 280px) {
+  .person > img {
+    display: none;
+  }
+
+  .person div {
+    margin-left: 0;
+  }
 }

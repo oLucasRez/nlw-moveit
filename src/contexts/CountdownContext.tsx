@@ -1,20 +1,9 @@
-//---------------------------------------------------------------< interfaces >
-//------------------------------------------------------------------< classes >
-//--------------------------------------------------------------------< pages >
-//---------------------------------------------------------------< components >
-//------------------------------------------------------------------< helpers >
-//-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
-import { useContext, useEffect } from "react";
-
 import { useCountdown } from "../hooks/useCountdown";
+import { useContext, useEffect } from "react";
 //-----------------------------------------------------------------< contexts >
 import { createContext } from "react";
-
 import { ChallengesContext } from "./ChallengesContext";
-//--------------------------------------------------------------------< utils >
-//-------------------------------------------------------------------< assets >
-//-------------------------------------------------------------------< styles >
 //--------------------------------------------------------------------< types >
 import { ReactNode } from "react";
 
@@ -38,15 +27,9 @@ export const CountdownContext = createContext({} as CountdownContextData);
 //====================================================[ < CountdownProvider > ]
 export function CountdownProvider({ children }: CountdownProviderProps) {
   //-------------------------------------------------------------< properties >
-  const { startNewChallenge } = useContext(ChallengesContext);
+  const { time, isActive, hasFinished, start, reset } = useCountdown(maxTime);
   //---------------------------------------------------------------------------
-  const {
-    time,
-    isActive,
-    hasFinished,
-    start: startCountdown,
-    reset: resetCountdown,
-  } = useCountdown(maxTime);
+  const { startNewChallenge } = useContext(ChallengesContext);
   //---------------------------------------------------------------------------
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -61,8 +44,8 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
         progress: time / maxTime,
         hasFinished,
         isActive,
-        startCountdown,
-        resetCountdown,
+        startCountdown: start,
+        resetCountdown: reset,
       }}
     >
       {children}

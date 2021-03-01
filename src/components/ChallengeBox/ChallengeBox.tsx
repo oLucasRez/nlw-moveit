@@ -1,22 +1,13 @@
-//---------------------------------------------------------------< interfaces >
-//------------------------------------------------------------------< classes >
-//--------------------------------------------------------------------< pages >
 //---------------------------------------------------------------< components >
 import ChallengeBoxActive from "./ChallengeBoxActive/ChallengeBoxActive";
 import ChallengeBoxNotActive from "./ChallengeBoxNotActive";
-//------------------------------------------------------------------< helpers >
-//-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
 import { useContext } from "react";
 //-----------------------------------------------------------------< contexts >
 import { ChallengesContext } from "../../contexts/ChallengesContext";
 import { BreakContext } from "../../contexts/BreakContext";
-//--------------------------------------------------------------------< utils >
-//-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
 import styles from "../../styles/components/ChallengeBox/ChallengeBox.module.css";
-//--------------------------------------------------------------------< types >
-//-------------------------------------------------------------------< global >
 //=========================================================[ < ChallengeBox > ]
 export default function ChallengeBox() {
   //-------------------------------------------------------------< properties >
@@ -24,7 +15,6 @@ export default function ChallengeBox() {
   const { shortBreak, breakPattern, currentBreakIndex } = useContext(
     BreakContext
   );
-  //---------------------------------------------------------------------------
   //----------------------------------------------------------------< methods >
   function getBalls() {
     const balls = [];
@@ -45,7 +35,6 @@ export default function ChallengeBox() {
 
     return balls;
   }
-  //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
     <div className={styles.container}>

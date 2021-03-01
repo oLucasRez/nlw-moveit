@@ -31,3 +31,9 @@ span.currentExperience {
 
   transform: translateX(-50%);
 }
+
+@media only screen and (max-width: 940px) {
+  .container {
+    margin-bottom: 4rem;
+  }
+}

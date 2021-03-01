@@ -1,16 +1,7 @@
-//---------------------------------------------------------------< interfaces >
-//------------------------------------------------------------------< classes >
-//--------------------------------------------------------------------< pages >
-//---------------------------------------------------------------< components >
-import { useMemo, useState } from "react";
-//------------------------------------------------------------------< helpers >
-//-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
+import { useState, useMemo } from "react";
 //-----------------------------------------------------------------< contexts >
 import { createContext } from "react";
-//--------------------------------------------------------------------< utils >
-//-------------------------------------------------------------------< assets >
-//-------------------------------------------------------------------< styles >
 //--------------------------------------------------------------------< types >
 import { ReactNode } from "react";
 
@@ -19,7 +10,7 @@ interface BreakContextData {
   longBreak: number;
   breakPattern: number[];
   currentBreakIndex: number;
-  nextBreak: () => void;
+  gotoNextBreak: () => void;
 }
 
 interface BreakProviderProps {
@@ -35,12 +26,12 @@ export const BreakContext = createContext({} as BreakContextData);
 export function BreakProvider({ children }: BreakProviderProps) {
   //-------------------------------------------------------------< properties >
   const [breakIndex, setBreakIndex] = useState(0);
-  //----------------------------------------------------------------< methods >
+  //---------------------------------------------------------------------------
   const currentBreakIndex = useMemo(() => breakIndex % breakPattern.length, [
     breakIndex,
   ]);
-  //---------------------------------------------------------------------------
-  function nextBreak() {
+  //----------------------------------------------------------------< methods >
+  function gotoNextBreak() {
     setBreakIndex(breakIndex + 1);
   }
   //-----------------------------------------------------------------< return >
@@ -51,7 +42,7 @@ export function BreakProvider({ children }: BreakProviderProps) {
         longBreak,
         breakPattern,
         currentBreakIndex,
-        nextBreak,
+        gotoNextBreak,
       }}
     >
       {children}

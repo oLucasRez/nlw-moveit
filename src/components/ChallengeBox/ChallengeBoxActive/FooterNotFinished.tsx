@@ -1,21 +1,11 @@
 //---------------------------------------------------------------< interfaces >
 import { Countdown } from "../../../interfaces/Countdown";
-//------------------------------------------------------------------< classes >
-//--------------------------------------------------------------------< pages >
-//---------------------------------------------------------------< components >
-//------------------------------------------------------------------< helpers >
-//-----------------------------------------------------------------< services >
-//--------------------------------------------------------------------< hooks >
-//-----------------------------------------------------------------< contexts >
-//--------------------------------------------------------------------< utils >
-//-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
 import styles from "../../../styles/components/ChallengeBox/ChallengeBoxActive/FooterNotFinished.module.css";
 //--------------------------------------------------------------------< types >
 interface FooterNotFinishedProps {
   countdown: Countdown;
 }
-//-------------------------------------------------------------------< global >
 //====================================================[ < FooterNotFinished > ]
 export default function FooterNotFinished({
   countdown,
@@ -48,6 +38,7 @@ export default function FooterNotFinished({
             <span>{secondRight}</span>
           </div>
         </div>
+
         {countdown.isActive ? (
           <button
             className={styles.cancelButton}
@@ -66,6 +57,7 @@ export default function FooterNotFinished({
           </button>
         )}
       </footer>
+
       <div className={styles.totalBar}>
         <div
           className={styles.progressBar}

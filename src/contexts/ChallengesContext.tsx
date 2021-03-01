@@ -1,19 +1,13 @@
 import Cookies from "js-cookie";
-//---------------------------------------------------------------< interfaces >
-//------------------------------------------------------------------< classes >
-//--------------------------------------------------------------------< pages >
 //---------------------------------------------------------------< components >
 import LevelUpModal from "../components/LevelUpModal";
-//------------------------------------------------------------------< helpers >
-//-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
+import { useNotification } from "../hooks/useNotification";
 import { useState, useEffect } from "react";
 //-----------------------------------------------------------------< contexts >
 import { createContext } from "react";
-//--------------------------------------------------------------------< utils >
 //-------------------------------------------------------------------< assets >
 import challenges from "../../challenges.json";
-//-------------------------------------------------------------------< styles >
 //--------------------------------------------------------------------< types >
 import { ReactNode } from "react";
 
@@ -50,6 +44,8 @@ export function ChallengesProvider({
   ...props
 }: ChallengesProviderProps) {
   //-------------------------------------------------------------< properties >
+  const notify = useNotification();
+  //---------------------------------------------------------------------------
   const [level, setLevel] = useState(props.level ?? 1);
   const [currentExperience, setCurrentExperience] = useState(
     props.currentExperience ?? 0
@@ -87,13 +83,7 @@ export function ChallengesProvider({
 
     setActiveChallenge(challenge);
 
-    new Audio("/notification.mp3").play();
-
-    if (Notification.permission === "granted") {
-      new Notification("Novo desafio 🎉", {
-        body: `Valendo ${challenge.amount} xp!`,
-      });
-    }
+    notify("Novo desafio 🎉", `Valendo ${challenge.amount} xp!`);
   }
 
   function resetChallenge() {
@@ -116,7 +106,6 @@ export function ChallengesProvider({
     setActiveChallenge(null);
     setChallengesCompleted(challengesCompleted + 1);
   }
-  //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
     <ChallengesContext.Provider

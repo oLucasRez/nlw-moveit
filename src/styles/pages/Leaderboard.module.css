@@ -1,8 +1,9 @@
 .container {
   height: 100vh;
-  max-width: 992px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 2.5rem 2rem 0;
+  padding-left: 9rem;
 
   display: flex;
   flex-direction: column;
@@ -16,4 +17,10 @@
 
 .container section {
   flex: 1;
+}
+
+@media only screen and (max-width: 540px) {
+  .container {
+    padding-left: 2rem;
+  }
 }

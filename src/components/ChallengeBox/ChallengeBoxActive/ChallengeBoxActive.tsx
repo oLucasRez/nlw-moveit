@@ -1,31 +1,31 @@
-//---------------------------------------------------------------< interfaces >
-//------------------------------------------------------------------< classes >
-//--------------------------------------------------------------------< pages >
 //---------------------------------------------------------------< components >
 import FooterFinished from "./FooterFinished";
 import FooterNotFinished from "./FooterNotFinished";
-//------------------------------------------------------------------< helpers >
-//-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
-import { useContext } from "react";
-//-----------------------------------------------------------------< contexts >
+import { useNotification } from "../../../hooks/useNotification";
+import { useContext, useEffect } from "react";
 import { useCountdown } from "../../../hooks/useCountdown";
+//-----------------------------------------------------------------< contexts >
 import { ChallengesContext } from "../../../contexts/ChallengesContext";
 import { BreakContext } from "../../../contexts/BreakContext";
-//--------------------------------------------------------------------< utils >
-//-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
 import styles from "../../../styles/components/ChallengeBox/ChallengeBoxActive/ChallengeBoxActive.module.css";
-//--------------------------------------------------------------------< types >
-//-------------------------------------------------------------------< global >
 //===================================================[ < ChallengeBoxActive > ]
 export default function ChallengeBoxActive() {
   //-------------------------------------------------------------< properties >
+  const notify = useNotification();
+  //---------------------------------------------------------------------------
   const { activeChallenge } = useContext(ChallengesContext);
   const { breakPattern, currentBreakIndex } = useContext(BreakContext);
   //---------------------------------------------------------------------------
   const countdown = useCountdown(breakPattern[currentBreakIndex]);
   //----------------------------------------------------------------< methods >
+  useEffect(
+    () =>
+      countdown.hasFinished &&
+      notify("Pausa finalizada", `Você conseguiu realizar o desafio?`),
+    [countdown.hasFinished]
+  );
   //-----------------------------------------------------------------< return >
   return (
     <div className={styles.container}>

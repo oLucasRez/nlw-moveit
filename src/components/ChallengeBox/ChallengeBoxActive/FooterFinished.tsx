@@ -1,38 +1,28 @@
-//---------------------------------------------------------------< interfaces >
-//------------------------------------------------------------------< classes >
-//--------------------------------------------------------------------< pages >
-//---------------------------------------------------------------< components >
-//------------------------------------------------------------------< helpers >
-//-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
 import { useContext } from "react";
 //-----------------------------------------------------------------< contexts >
 import { ChallengesContext } from "../../../contexts/ChallengesContext";
 import { CountdownContext } from "../../../contexts/CountdownContext";
 import { BreakContext } from "../../../contexts/BreakContext";
-//--------------------------------------------------------------------< utils >
-//-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
 import styles from "../../../styles/components/ChallengeBox/ChallengeBoxActive/FooterFinished.module.css";
-//--------------------------------------------------------------------< types >
-//-------------------------------------------------------------------< global >
 //=======================================================[ < FooterFinished > ]
 export default function FooterFinished() {
   //-------------------------------------------------------------< properties >
   const { resetChallenge, completeChallenge } = useContext(ChallengesContext);
   const { resetCountdown } = useContext(CountdownContext);
-  const { nextBreak } = useContext(BreakContext);
+  const { gotoNextBreak } = useContext(BreakContext);
   //----------------------------------------------------------------< methods >
   function onChallengeSucceeded() {
     completeChallenge();
     resetCountdown();
-    nextBreak();
+    gotoNextBreak();
   }
 
   function onChallengeFailed() {
     resetChallenge();
     resetCountdown();
-    nextBreak();
+    gotoNextBreak();
   }
   //-----------------------------------------------------------------< return >
   return (
@@ -45,6 +35,7 @@ export default function FooterFinished() {
         >
           Falhei
         </button>
+
         <button
           type="button"
           className={styles.challengeSucceededButton}
@@ -53,6 +44,7 @@ export default function FooterFinished() {
           Completei
         </button>
       </footer>
+
       <div className={styles.totalBar} />
     </>
   );

@@ -1,18 +1,7 @@
-//---------------------------------------------------------------< interfaces >
-//------------------------------------------------------------------< classes >
-//--------------------------------------------------------------------< pages >
-//---------------------------------------------------------------< components >
-//------------------------------------------------------------------< helpers >
-//-----------------------------------------------------------------< services >
 //--------------------------------------------------------------------< hooks >
-import { useState } from "react";
 import { useRouter } from "next/router";
-//-----------------------------------------------------------------< contexts >
-//--------------------------------------------------------------------< utils >
-//-------------------------------------------------------------------< assets >
 //-------------------------------------------------------------------< styles >
 import styles from "../styles/components/MenuBar.module.css";
-//--------------------------------------------------------------------< types >
 //==============================================================[ < MenuBar > ]
 export default function MenuBar() {
   //-------------------------------------------------------------< properties >
@@ -21,14 +10,13 @@ export default function MenuBar() {
   const isHomePage = router.pathname === "/home";
   const isLeaderboardPage = router.pathname === "/leaderboard";
   //----------------------------------------------------------------< methods >
-  function onHomeClick() {
+  function onHomeRedirect() {
     router.push("/home");
   }
 
-  function onAwardClick() {
+  function onAwardRedirect() {
     router.push("/leaderboard");
   }
-  //---------------------------------------------------------------------------
   //-----------------------------------------------------------------< return >
   return (
     <div className={styles.container}>
@@ -47,14 +35,14 @@ export default function MenuBar() {
 
         <div
           className={`${styles.tab} ${isHomePage && styles.tabSelected}`}
-          onClick={onHomeClick}
+          onClick={onHomeRedirect}
         >
           <img src="/icons/home.svg" alt="home" />
         </div>
 
         <div
           className={`${styles.tab} ${isLeaderboardPage && styles.tabSelected}`}
-          onClick={onAwardClick}
+          onClick={onAwardRedirect}
         >
           <img src="/icons/award.svg" alt="award" />
         </div>
