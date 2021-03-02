@@ -11,9 +11,15 @@ export function useNotification(): (title: string, body: string) => void {
     new Audio("/notification.mp3").play();
 
     if (Notification.permission === "granted") {
-      new Notification(title, {
-        body,
+      navigator.serviceWorker.getRegistration().then(function (reg) {
+        reg.showNotification(title, {
+          body,
+          icon: "favicon.png",
+          vibrate: [100, 50, 100],
+        });
       });
+    } else {
+      Notification.requestPermission();
     }
   }
   //-----------------------------------------------------------------< return >

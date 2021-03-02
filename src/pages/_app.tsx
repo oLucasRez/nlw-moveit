@@ -1,5 +1,7 @@
 //------------------------------------------------------------------< classes >
 import App from "next/app";
+//--------------------------------------------------------------------< hooks >
+import { useEffect } from "react";
 //-----------------------------------------------------------------< contexts >
 import { ChallengesProvider } from "../contexts/ChallengesContext";
 import { CountdownProvider } from "../contexts/CountdownContext";
@@ -22,6 +24,24 @@ export default function MyApp({
   currentExperience,
   challengesCompleted,
 }: MyAppProps) {
+  //----------------------------------------------------------------< methods >
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/serviceWorker.js").then(
+          function (registration) {
+            console.log(
+              "Service Worker registration successful with scope: ",
+              registration.scope
+            );
+          },
+          function (err) {
+            console.log("Service Worker registration failed: ", err);
+          }
+        );
+      });
+    }
+  }, []);
   //-----------------------------------------------------------------< return >
   return (
     <ChallengesProvider

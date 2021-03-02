@@ -37,7 +37,11 @@ export default function SignInForm() {
       </div>
 
       <div className={styles.inputContainer}>
-        <input placeholder="Digite seu username" onChange={onUsernameInput} />
+        <input
+          placeholder="Digite seu username"
+          onChange={onUsernameInput}
+          value={username}
+        />
         <button type="submit" disabled={isButtonDisabled} onClick={onSubmit}>
           <img src="/icons/arrow-right.svg" alt="GitHub" />
         </button>
