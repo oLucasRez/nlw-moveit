@@ -13,12 +13,16 @@
 }
 
 .container > img {
-  top: 2rem;
+  position: absolute;
+}
+
+.logo {
+  margin: 0 auto;
   left: 0;
   right: 0;
-  margin: 0 auto;
+  top: 2rem;
 
-  position: absolute;
+  cursor: pointer;
 }
 
 .tabsContainer {
@@ -41,7 +45,7 @@
 }
 
 .tab:hover,
-.tabSelected {
+.selected {
   filter: none;
   transition: 0.1s;
 }
@@ -87,6 +91,24 @@
   animation-name: award;
 }
 
+.settings {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 2rem;
+
+  cursor: pointer;
+
+  filter: saturate(0) brightness(0.95) opacity(0.5);
+}
+
+.settings:hover {
+  filter: none;
+  transition: 0.1s;
+}
+
 @media only screen and (max-width: 540px) {
   .container {
     width: 100vw;
@@ -101,11 +123,23 @@
   }
 
   .container > img {
-    height: 2.5rem;
-    left: 2rem;
     margin: auto 0;
+  }
 
-    position: absolute;
+  .container img {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .logo {
+    left: 2rem;
+  }
+
+  .settings {
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: 2rem;
   }
 
   .tabsContainer {

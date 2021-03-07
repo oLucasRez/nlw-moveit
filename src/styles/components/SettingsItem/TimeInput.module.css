@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  align-items: center;
+
+  font-family: Rajdhani;
+  font-weight: 600;
+  color: var(--title);
+}
+
+.container > div {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  overflow: hidden;
+
+  background: var(--background);
+  font-size: 1.5rem;
+  border-radius: 5px;
+}
+
+.container > div:focus-within {
+  box-shadow: 0 0 0 2px var(--blue);
+}
+
+.container > div input {
+  width: 2rem;
+  height: 2rem;
+
+  flex: 1;
+  text-align: center;
+
+  border: none;
+  background: var(--background);
+  font-family: Rajdhani;
+  font-size: 1.5rem;
+  outline: none;
+}
+
+.container > div input:first-child {
+  border-right: 1px solid var(--white);
+}
+
+.container > div input:last-child {
+  border-left: 1px solid var(--white);
+}
+
+.container > span {
+  margin: 0 0.5rem;
+
+  font-size: 1.25rem;
+}

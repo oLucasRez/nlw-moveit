@@ -6,15 +6,25 @@ import { useEffect } from "react";
 import { ChallengesProvider } from "../contexts/ChallengesContext";
 import { CountdownProvider } from "../contexts/CountdownContext";
 import { UserProvider } from "../contexts/UserContext";
+import { BreakProvider } from "../contexts/BreakContext";
 //-------------------------------------------------------------------< styles >
 import "../styles/global.css";
 //--------------------------------------------------------------------< types >
 import type { AppProps, AppContext } from "next/app";
+import toArray from "../utils/toObject";
 
 interface MyAppProps extends AppProps {
   level: number;
   currentExperience: number;
   challengesCompleted: number;
+
+  name: string;
+  username: string;
+  avatar: string;
+
+  shortBreak: number;
+  longBreak: number;
+  breakPattern: string;
 }
 //================================================================[ < MyApp > ]
 export default function MyApp({
@@ -51,7 +61,9 @@ export default function MyApp({
     >
       <CountdownProvider>
         <UserProvider>
-          <Component {...pageProps} />
+          <BreakProvider>
+            <Component {...pageProps} />
+          </BreakProvider>
         </UserProvider>
       </CountdownProvider>
     </ChallengesProvider>
@@ -61,13 +73,12 @@ export default function MyApp({
 MyApp.getInitialProps = async (appContext: AppContext) => {
   const { cookies } = {
     cookies: {
-      level: 1,
+      level: 0,
       currentExperience: 0,
       challengesCompleted: 0,
     },
     ...appContext.ctx.req,
   };
-
   const { level, currentExperience, challengesCompleted } = cookies;
 
   const appProps = await App.getInitialProps(appContext);

@@ -1,11 +1,12 @@
+//---------------------------------------------------------------< interfaces >
+import State from "../interfaces/State";
 //--------------------------------------------------------------------< hooks >
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //-----------------------------------------------------------------< contexts >
 import { createContext } from "react";
 //--------------------------------------------------------------------< types >
-import { Dispatch, SetStateAction, ReactNode } from "react";
-
-type State<T> = [T, Dispatch<SetStateAction<T>>];
+import { ReactNode } from "react";
+import Cookies from "js-cookie";
 
 interface UserContextData {
   nameState: State<string>;
@@ -20,13 +21,27 @@ interface UserProviderProps {
 export const UserContext = createContext({} as UserContextData);
 //=========================================================[ < UserProvider > ]
 export function UserProvider({ children }: UserProviderProps) {
+  //-------------------------------------------------------------< properties >
+  const [name, setName] = useState("Anônimo");
+  const [username, setUsername] = useState("anonimo");
+  const [avatar, setAvatar] = useState("");
+  //----------------------------------------------------------------< methods >
+  useEffect(() => {
+    Cookies.set("name", name);
+  }, [name]);
+  useEffect(() => {
+    Cookies.set("username", username);
+  }, [username]);
+  useEffect(() => {
+    Cookies.set("avatar", avatar);
+  }, [avatar]);
   //-----------------------------------------------------------------< return >
   return (
     <UserContext.Provider
       value={{
-        nameState: useState(""),
-        usernameState: useState(""),
-        avatarState: useState(""),
+        nameState: [name, setName],
+        usernameState: [username, setUsername],
+        avatarState: [avatar, setAvatar],
       }}
     >
       {children}

@@ -1,0 +1,5 @@
+{
+  "shortBreak": 300,
+  "longBreak": 900,
+  "breakPattern": [0, 0, 0, 1]
+}

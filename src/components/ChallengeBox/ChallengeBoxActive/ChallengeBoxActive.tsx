@@ -3,7 +3,7 @@ import FooterFinished from "./FooterFinished";
 import FooterNotFinished from "./FooterNotFinished";
 //--------------------------------------------------------------------< hooks >
 import { useNotification } from "../../../hooks/useNotification";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useCountdown } from "../../../hooks/useCountdown";
 //-----------------------------------------------------------------< contexts >
 import { ChallengesContext } from "../../../contexts/ChallengesContext";
@@ -16,8 +16,9 @@ export default function ChallengeBoxActive() {
   const notify = useNotification();
   //---------------------------------------------------------------------------
   const { activeChallenge } = useContext(ChallengesContext);
-  const { breakPattern, currentBreakIndex } = useContext(BreakContext);
+  const { breakPatternState, currentBreakIndex } = useContext(BreakContext);
   //---------------------------------------------------------------------------
+  const [breakPattern] = breakPatternState;
   const countdown = useCountdown(breakPattern[currentBreakIndex]);
   //----------------------------------------------------------------< methods >
   useEffect(

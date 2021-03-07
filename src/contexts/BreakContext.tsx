@@ -1,14 +1,18 @@
+import Cookies from "js-cookie";
 //--------------------------------------------------------------------< hooks >
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 //-----------------------------------------------------------------< contexts >
 import { createContext } from "react";
+//-------------------------------------------------------------------< assets >
+import defaultSettings from "../../defaultSettings.json";
 //--------------------------------------------------------------------< types >
 import { ReactNode } from "react";
+import State from "../interfaces/State";
 
 interface BreakContextData {
-  shortBreak: number;
-  longBreak: number;
-  breakPattern: number[];
+  shortBreakState: State<number>;
+  longBreakState: State<number>;
+  breakPatternState: State<number[]>;
   currentBreakIndex: number;
   gotoNextBreak: () => void;
 }
@@ -17,30 +21,36 @@ interface BreakProviderProps {
   children: ReactNode;
 }
 //-------------------------------------------------------------------< global >
-const shortBreak = 5 * 60;
-const longBreak = 15 * 60;
-const breakPattern = [shortBreak, shortBreak, shortBreak, longBreak];
-
 export const BreakContext = createContext({} as BreakContextData);
 //========================================================[ < BreakProvider > ]
-export function BreakProvider({ children }: BreakProviderProps) {
+export function BreakProvider({ children, ...props }: BreakProviderProps) {
   //-------------------------------------------------------------< properties >
   const [breakIndex, setBreakIndex] = useState(0);
+  const [shortBreak, setShortBreak] = useState(defaultSettings.shortBreak);
+  const [longBreak, setLongBreak] = useState(defaultSettings.longBreak);
+  const [_breakPattern, setBreakPattern] = useState(
+    defaultSettings.breakPattern
+  );
   //---------------------------------------------------------------------------
-  const currentBreakIndex = useMemo(() => breakIndex % breakPattern.length, [
-    breakIndex,
-  ]);
+  const breakPattern = _breakPattern.map((value) =>
+    value ? longBreak : shortBreak
+  );
+  const currentBreakIndex = breakIndex % _breakPattern.length;
   //----------------------------------------------------------------< methods >
   function gotoNextBreak() {
     setBreakIndex(breakIndex + 1);
   }
+  //---------------------------------------------------------------------------
+  // useEffect(() => {
+  //   Cookies.set("breakPattern", _breakPattern);
+  // }, [_breakPattern]);
   //-----------------------------------------------------------------< return >
   return (
     <BreakContext.Provider
       value={{
-        shortBreak,
-        longBreak,
-        breakPattern,
+        shortBreakState: [shortBreak, setShortBreak],
+        longBreakState: [longBreak, setLongBreak],
+        breakPatternState: [breakPattern, setBreakPattern],
         currentBreakIndex,
         gotoNextBreak,
       }}

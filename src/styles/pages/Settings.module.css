@@ -1,0 +1,30 @@
+.container {
+  height: 100vh;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 0;
+  padding-left: 9rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.container > h1 {
+  margin-bottom: 2.5rem;
+
+  color: var(--title);
+}
+
+.container section {
+  flex: 1;
+}
+
+.container section ul {
+  list-style-type: none;
+}
+
+@media only screen and (max-width: 540px) {
+  .container {
+    padding-left: 2rem;
+  }
+}

@@ -10,7 +10,6 @@ import ChallengeBox from "../components/ChallengeBox/ChallengeBox";
 import { useContext } from "react";
 //-----------------------------------------------------------------< contexts >
 import { CountdownContext } from "../contexts/CountdownContext";
-import { BreakProvider } from "../contexts/BreakContext";
 //-------------------------------------------------------------------< styles >
 import styles from "../styles/pages/Home.module.css";
 //=================================================================[ < Home > ]
@@ -35,9 +34,7 @@ export default function Home() {
         </div>
 
         <div className={!hasFinished ? styles.hidden : ""}>
-          <BreakProvider>
-            <ChallengeBox />
-          </BreakProvider>
+          <ChallengeBox />
         </div>
       </section>
     </div>

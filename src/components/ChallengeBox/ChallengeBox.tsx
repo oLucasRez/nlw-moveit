@@ -12,9 +12,12 @@ import styles from "../../styles/components/ChallengeBox/ChallengeBox.module.css
 export default function ChallengeBox() {
   //-------------------------------------------------------------< properties >
   const { activeChallenge } = useContext(ChallengesContext);
-  const { shortBreak, breakPattern, currentBreakIndex } = useContext(
+  const { shortBreakState, breakPatternState, currentBreakIndex } = useContext(
     BreakContext
   );
+  //---------------------------------------------------------------------------
+  const [shortBreak] = shortBreakState;
+  const [breakPattern] = breakPatternState;
   //----------------------------------------------------------------< methods >
   function getBalls() {
     const balls = [];

@@ -36,12 +36,19 @@ self.addEventListener("install", function (evt) {
   evt.waitUntil(precache());
 });
 
-self.addEventListener("fetch", function (evt) {
-  console.log("The service worker is serving the asset.");
+// self.addEventListener("fetch", function (evt) {
+//   console.log("The service worker is serving the asset.");
 
-  evt.respondWith(
-    fromNetwork(evt.request, 400).catch(function () {
-      return fromCache(evt.request);
-    })
-  );
+//   evt.respondWith(
+//     fromNetwork(evt.request, 400).catch(function () {
+//       return fromCache(evt.request);
+//     })
+//   );
+// });
+
+self.addEventListener("notificationclick", function (evt) {
+  const { notification, action } = evt;
+
+  if (action === "close") notification.close();
+  else clients.openWindow("/home");
 });
