@@ -1,12 +1,10 @@
 //---------------------------------------------------------------< interfaces >
 import State from "../interfaces/State";
-//--------------------------------------------------------------------< hooks >
-import { useEffect, useState } from "react";
 //-----------------------------------------------------------------< contexts >
 import { createContext } from "react";
 //--------------------------------------------------------------------< types >
 import { ReactNode } from "react";
-import Cookies from "js-cookie";
+import useCookie from "../hooks/useCookie";
 
 interface UserContextData {
   nameState: State<string>;
@@ -22,19 +20,9 @@ export const UserContext = createContext({} as UserContextData);
 //=========================================================[ < UserProvider > ]
 export function UserProvider({ children }: UserProviderProps) {
   //-------------------------------------------------------------< properties >
-  const [name, setName] = useState("Anônimo");
-  const [username, setUsername] = useState("anonimo");
-  const [avatar, setAvatar] = useState("");
-  //----------------------------------------------------------------< methods >
-  useEffect(() => {
-    Cookies.set("name", name);
-  }, [name]);
-  useEffect(() => {
-    Cookies.set("username", username);
-  }, [username]);
-  useEffect(() => {
-    Cookies.set("avatar", avatar);
-  }, [avatar]);
+  const [name, setName] = useCookie("name", "Anônimo");
+  const [username, setUsername] = useCookie("username", "anonimo");
+  const [avatar, setAvatar] = useCookie("avatar", "");
   //-----------------------------------------------------------------< return >
   return (
     <UserContext.Provider

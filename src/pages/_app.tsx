@@ -1,5 +1,3 @@
-//------------------------------------------------------------------< classes >
-import App from "next/app";
 //--------------------------------------------------------------------< hooks >
 import { useEffect } from "react";
 //-----------------------------------------------------------------< contexts >
@@ -10,30 +8,9 @@ import { BreakProvider } from "../contexts/BreakContext";
 //-------------------------------------------------------------------< styles >
 import "../styles/global.css";
 //--------------------------------------------------------------------< types >
-import type { AppProps, AppContext } from "next/app";
-import toArray from "../utils/toObject";
-
-interface MyAppProps extends AppProps {
-  level: number;
-  currentExperience: number;
-  challengesCompleted: number;
-
-  name: string;
-  username: string;
-  avatar: string;
-
-  shortBreak: number;
-  longBreak: number;
-  breakPattern: string;
-}
+import type { AppProps } from "next/app";
 //================================================================[ < MyApp > ]
-export default function MyApp({
-  Component,
-  pageProps,
-  level,
-  currentExperience,
-  challengesCompleted,
-}: MyAppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   //----------------------------------------------------------------< methods >
   useEffect(() => {
     if ("serviceWorker" in navigator) {
@@ -54,11 +31,7 @@ export default function MyApp({
   }, []);
   //-----------------------------------------------------------------< return >
   return (
-    <ChallengesProvider
-      level={level}
-      currentExperience={currentExperience}
-      challengesCompleted={challengesCompleted}
-    >
+    <ChallengesProvider>
       <CountdownProvider>
         <UserProvider>
           <BreakProvider>
@@ -69,24 +42,3 @@ export default function MyApp({
     </ChallengesProvider>
   );
 }
-
-MyApp.getInitialProps = async (appContext: AppContext) => {
-  const { cookies } = {
-    cookies: {
-      level: 0,
-      currentExperience: 0,
-      challengesCompleted: 0,
-    },
-    ...appContext.ctx.req,
-  };
-  const { level, currentExperience, challengesCompleted } = cookies;
-
-  const appProps = await App.getInitialProps(appContext);
-
-  return {
-    ...appProps,
-    level: Number(level),
-    currentExperience: Number(currentExperience),
-    challengesCompleted: Number(challengesCompleted),
-  };
-};

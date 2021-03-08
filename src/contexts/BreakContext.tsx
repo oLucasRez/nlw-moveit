@@ -1,6 +1,5 @@
-import Cookies from "js-cookie";
 //--------------------------------------------------------------------< hooks >
-import { useState, useEffect } from "react";
+import { useState } from "react";
 //-----------------------------------------------------------------< contexts >
 import { createContext } from "react";
 //-------------------------------------------------------------------< assets >
@@ -8,6 +7,7 @@ import defaultSettings from "../../defaultSettings.json";
 //--------------------------------------------------------------------< types >
 import { ReactNode } from "react";
 import State from "../interfaces/State";
+import useCookie from "../hooks/useCookie";
 
 interface BreakContextData {
   shortBreakState: State<number>;
@@ -23,12 +23,19 @@ interface BreakProviderProps {
 //-------------------------------------------------------------------< global >
 export const BreakContext = createContext({} as BreakContextData);
 //========================================================[ < BreakProvider > ]
-export function BreakProvider({ children, ...props }: BreakProviderProps) {
+export function BreakProvider({ children }: BreakProviderProps) {
   //-------------------------------------------------------------< properties >
   const [breakIndex, setBreakIndex] = useState(0);
-  const [shortBreak, setShortBreak] = useState(defaultSettings.shortBreak);
-  const [longBreak, setLongBreak] = useState(defaultSettings.longBreak);
-  const [_breakPattern, setBreakPattern] = useState(
+  const [longBreak, setLongBreak] = useCookie(
+    "longBreak",
+    defaultSettings.longBreak
+  );
+  const [shortBreak, setShortBreak] = useCookie<number>(
+    "shortBreak",
+    defaultSettings.shortBreak
+  );
+  const [_breakPattern, setBreakPattern] = useCookie<number[]>(
+    "breakPattern",
     defaultSettings.breakPattern
   );
   //---------------------------------------------------------------------------
@@ -40,10 +47,6 @@ export function BreakProvider({ children, ...props }: BreakProviderProps) {
   function gotoNextBreak() {
     setBreakIndex(breakIndex + 1);
   }
-  //---------------------------------------------------------------------------
-  // useEffect(() => {
-  //   Cookies.set("breakPattern", _breakPattern);
-  // }, [_breakPattern]);
   //-----------------------------------------------------------------< return >
   return (
     <BreakContext.Provider
