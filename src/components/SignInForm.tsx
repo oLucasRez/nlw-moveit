@@ -1,3 +1,8 @@
+//---------------------------------------------------------------< components >
+import {
+  RiGithubFill as GithubIcon,
+  RiArrowRightLine as ArrowIcon,
+} from "react-icons/ri";
 //--------------------------------------------------------------------< hooks >
 import { useRouter } from "next/router";
 import { useState, useEffect, useContext } from "react";
@@ -32,7 +37,7 @@ export default function SignInForm() {
       <h1>Bem-vindo</h1>
 
       <div className={styles.gitHubContainer}>
-        <img src="/icons/github.svg" alt="GitHub" />
+        <GithubIcon />
         <p>Faça login com seu GitHub para começar</p>
       </div>
 
@@ -43,7 +48,7 @@ export default function SignInForm() {
           value={username}
         />
         <button type="submit" disabled={isButtonDisabled} onClick={onSubmit}>
-          <img src="/icons/arrow-right.svg" alt="GitHub" />
+          <ArrowIcon />
         </button>
       </div>
     </div>

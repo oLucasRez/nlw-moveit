@@ -12,7 +12,7 @@
   background: var(--white);
 }
 
-.container > img {
+.container > :is(img, svg) {
   position: absolute;
 }
 
@@ -41,12 +41,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: saturate(0) brightness(0.95) opacity(0.5);
 }
 
-.tab:hover,
-.selected {
-  filter: none;
+.tab svg {
+  width: 2rem;
+  height: 2rem;
+
+  color: var(--text);
+  opacity: 0.5;
+}
+
+:is(.tab:hover, .selected) svg {
+  color: var(--blue);
+  opacity: 1;
   transition: 0.1s;
 }
 
@@ -101,11 +108,13 @@
 
   cursor: pointer;
 
-  filter: saturate(0) brightness(0.95) opacity(0.5);
+  color: var(--text);
+  opacity: 0.5;
 }
 
-.settings:hover {
-  filter: none;
+.settings:is(:hover, .selected) {
+  color: var(--blue);
+  opacity: 1;
   transition: 0.1s;
 }
 

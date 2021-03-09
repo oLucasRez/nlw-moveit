@@ -2,8 +2,10 @@
 import Head from "next/head";
 import MenuBar from "../components/MenuBar";
 import SettingsItem from "../components/SettingsItem/SettingsItem";
-import { TimeInput } from "../components/SettingsItem/TimeInput";
+import TimeInput from "../components/SettingsItem/TimeInput";
+import PatternInput from "../components/SettingsItem/PatternInput";
 //--------------------------------------------------------------------< hooks >
+import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 //-----------------------------------------------------------------< contexts >
 import { BreakContext } from "../contexts/BreakContext";
@@ -14,6 +16,8 @@ import styles from "../styles/pages/Settings.module.css";
 //=============================================================[ < Settings > ]
 export default function Settings() {
   //-------------------------------------------------------------< properties >
+  const router = useRouter();
+  //---------------------------------------------------------------------------
   const { shortBreakState, longBreakState, breakPatternState } = useContext(
     BreakContext
   );
@@ -24,14 +28,22 @@ export default function Settings() {
   //---------------------------------------------------------------------------
   const [shortBreakChanges, setShortBreakChanges] = useState(shortBreak);
   const [longBreakChanges, setLongBreakChanges] = useState(longBreak);
+  const [breakPatternChanges, setBreakPatternChanges] = useState(breakPattern);
   //----------------------------------------------------------------< methods >
   function onConfirmChanges() {
+    router.push("home");
     setShortBreak(shortBreakChanges);
     setLongBreak(longBreakChanges);
+    setBreakPattern(breakPatternChanges);
   }
   function onRestoreDefault() {
+    setShortBreakChanges(shortBreak);
+    setLongBreakChanges(longBreak);
+    setBreakPatternChanges(breakPattern);
+
     setShortBreak(defaultSettings.shortBreak);
     setLongBreak(defaultSettings.longBreak);
+    setBreakPattern(defaultSettings.breakPattern);
   }
   //-----------------------------------------------------------------< return >
   return (
@@ -47,24 +59,28 @@ export default function Settings() {
       <section>
         <ul>
           <SettingsItem title="Duração da pausa curta">
-            <TimeInput timeState={[shortBreak, setShortBreakChanges]} />
+            <TimeInput timeState={[shortBreakChanges, setShortBreakChanges]} />
           </SettingsItem>
 
           <SettingsItem title="Duração da pausa longa">
-            <TimeInput timeState={[longBreak, setLongBreakChanges]} />
+            <TimeInput timeState={[longBreakChanges, setLongBreakChanges]} />
           </SettingsItem>
 
           <SettingsItem title="Padrão das pausas">
-            <div>abacate</div>
+            <PatternInput
+              patternState={[breakPatternChanges, setBreakPatternChanges]}
+            />
           </SettingsItem>
         </ul>
 
-        <button type="submit" onClick={onConfirmChanges}>
-          Salvar alterações
-        </button>
-        <button type="button" onClick={onRestoreDefault}>
-          Restaurar padrões
-        </button>
+        <footer>
+          <button type="submit" onClick={onConfirmChanges}>
+            Salvar alterações
+          </button>
+          <button type="button" onClick={onRestoreDefault}>
+            Restaurar padrões
+          </button>
+        </footer>
       </section>
     </div>
   );

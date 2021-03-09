@@ -12,18 +12,15 @@ import styles from "../../styles/components/ChallengeBox/ChallengeBox.module.css
 export default function ChallengeBox() {
   //-------------------------------------------------------------< properties >
   const { activeChallenge } = useContext(ChallengesContext);
-  const { shortBreakState, breakPatternState, currentBreakIndex } = useContext(
-    BreakContext
-  );
+  const { breakPatternState, currentBreakIndex } = useContext(BreakContext);
   //---------------------------------------------------------------------------
-  const [shortBreak] = shortBreakState;
   const [breakPattern] = breakPatternState;
   //----------------------------------------------------------------< methods >
   function getBalls() {
     const balls = [];
 
     for (let i = 0; i < breakPattern.length; i++) {
-      const isShortBreak = breakPattern[i] === shortBreak;
+      const isShortBreak = breakPattern[i] === 0;
       const className = isShortBreak ? styles.shortBreak : styles.longBreak;
 
       balls.push(

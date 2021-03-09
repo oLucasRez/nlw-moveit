@@ -20,8 +20,8 @@ export const UserContext = createContext({} as UserContextData);
 //=========================================================[ < UserProvider > ]
 export function UserProvider({ children }: UserProviderProps) {
   //-------------------------------------------------------------< properties >
-  const [name, setName] = useCookie("name", "");
-  const [username, setUsername] = useCookie("username", "");
+  const [name, setName] = useCookie("name", "Anônimo");
+  const [username, setUsername] = useCookie("username", "anonimo");
   const [avatar, setAvatar] = useCookie("avatar", "");
   //-----------------------------------------------------------------< return >
   return (

@@ -1,3 +1,9 @@
+//---------------------------------------------------------------< components >
+import {
+  RiHome3Line as HomeIcon,
+  RiAwardLine as AwardIcon,
+  RiSettings2Line as GearIcon,
+} from "react-icons/ri";
 //--------------------------------------------------------------------< hooks >
 import { useRouter } from "next/router";
 //-------------------------------------------------------------------< styles >
@@ -11,6 +17,10 @@ export default function MenuBar() {
   const isLeaderboardPage = router.pathname === "/leaderboard";
   const isSettingsPage = router.pathname === "/settings";
   //----------------------------------------------------------------< methods >
+  function onSignInRedirect() {
+    router.push("/");
+  }
+
   function onHomeRedirect() {
     router.push("/home");
   }
@@ -29,7 +39,7 @@ export default function MenuBar() {
         className={styles.logo}
         src="/icons/logo.svg"
         alt="move.it"
-        onClick={onHomeRedirect}
+        onClick={onSignInRedirect}
       />
 
       <div className={styles.tabsContainer}>
@@ -41,27 +51,26 @@ export default function MenuBar() {
             " " +
             (isLeaderboardPage && styles.awardSelected)
           }
+          style={{ visibility: isSettingsPage ? "hidden" : "visible" }}
         />
 
         <div
           className={`${styles.tab} ${isHomePage && styles.selected}`}
           onClick={onHomeRedirect}
         >
-          <img src="/icons/home.svg" alt="home" />
+          <HomeIcon />
         </div>
 
         <div
           className={`${styles.tab} ${isLeaderboardPage && styles.selected}`}
           onClick={onAwardRedirect}
         >
-          <img src="/icons/award.svg" alt="award" />
+          <AwardIcon />
         </div>
       </div>
 
-      <img
+      <GearIcon
         className={`${styles.settings} ${isSettingsPage && styles.selected}`}
-        src="/icons/settings.svg"
-        alt="settings"
         onClick={onSettingsRedirect}
       />
     </div>

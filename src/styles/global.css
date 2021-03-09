@@ -5,19 +5,6 @@
 }
 
 :root {
-  --white: #fff;
-  --background: #f2f3f5;
-  --gray-line: #dcdde0;
-  --text: #666667;
-  --text-highlight: #b3b9ff;
-  --title: #2e384d;
-  --red: #e83f5b;
-  --red-dark: #c92f49;
-  --green: #4cd62b;
-  --green-dark: #40b822;
-  --blue: #5965e0;
-  --blue-dark: #4953b8;
-  --blue-twitter: #2aa9e0;
 }
 
 @media (max-width: 1080px) {
@@ -42,6 +29,38 @@
   html {
     font-size: 62.5%;
   }
+}
+
+.white {
+  --white: #fff;
+  --background: #f2f3f5;
+  --gray-line: #dcdde0;
+  --text: #666667;
+  --text-highlight: #b3b9ff;
+  --title: #2e384d;
+  --red: #e83f5b;
+  --red-dark: #c92f49;
+  --green: #4cd62b;
+  --green-dark: #40b822;
+  --blue: #5965e0;
+  --blue-dark: #4953b8;
+  --blue-twitter: #2aa9e0;
+}
+
+.black {
+  --white: #222;
+  --background: #f2f3f5;
+  --gray-line: #dcdde0;
+  --text: #666667;
+  --text-highlight: #b3b9ff;
+  --title: #2e384d;
+  --red: #e83f5b;
+  --red-dark: #c92f49;
+  --green: #4cd62b;
+  --green-dark: #40b822;
+  --blue: #5965e0;
+  --blue-dark: #4953b8;
+  --blue-twitter: #2aa9e0;
 }
 
 body {

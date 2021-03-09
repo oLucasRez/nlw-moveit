@@ -34,15 +34,15 @@ export function BreakProvider({ children }: BreakProviderProps) {
     "shortBreak",
     defaultSettings.shortBreak
   );
-  const [_breakPattern, setBreakPattern] = useCookie<number[]>(
+  const [breakPattern, setBreakPattern] = useCookie<number[]>(
     "breakPattern",
     defaultSettings.breakPattern
   );
   //---------------------------------------------------------------------------
-  const breakPattern = _breakPattern.map((value) =>
-    value ? longBreak : shortBreak
-  );
-  const currentBreakIndex = breakIndex % _breakPattern.length;
+  // const breakPattern = _breakPattern.map((value) =>
+  //   value ? longBreak : shortBreak
+  // );
+  const currentBreakIndex = breakIndex % breakPattern.length;
   //----------------------------------------------------------------< methods >
   function gotoNextBreak() {
     setBreakIndex(breakIndex + 1);

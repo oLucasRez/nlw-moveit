@@ -7,7 +7,7 @@ interface TimeItemProps {
   timeState: State<number>;
 }
 //============================================================[ < TimeInput > ]
-export function TimeInput({ timeState }: TimeItemProps) {
+export default function TimeInput({ timeState }: TimeItemProps) {
   //-------------------------------------------------------------< properties >
   const [time, setTime] = timeState;
   //---------------------------------------------------------------------------
