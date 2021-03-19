@@ -1,4 +1,6 @@
 .container {
+  height: 3rem;
+
   display: flex;
   align-items: center;
 }
@@ -61,20 +63,24 @@
 }
 
 .controllers {
-  height: 3rem;
+  height: max-content;
   margin-left: 1rem;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  color: var(--text);
+  border: 1px solid var(--gray-line);
+  border-radius: 5px;
 }
 
 .controllers svg {
   width: 1.5rem;
   height: 1.5rem;
+  padding: 0.25rem;
 
   cursor: pointer;
-  color: var(--text);
   opacity: 0.5;
 }
 
@@ -82,6 +88,10 @@
   opacity: 1;
 
   transition: 0.1s;
+}
+
+.controllers .plusIcon {
+  border-bottom: 1px solid var(--text);
 }
 
 .controllers .plusIcon:hover {
